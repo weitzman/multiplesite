@@ -717,15 +717,3 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 # if (file_exists(__DIR__ . '/settings.local.php')) {
 #   include __DIR__ . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
-  'database' => 'master',
-  'username' => 'root',
-  'password' => '',
-  'prefix' => '',
-  'host' => '127.0.0.1',
-  'port' => '33067',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
-$settings['install_profile'] = 'standard';
-$config_directories['sync'] = '../config/'. basename(__DIR__). '/sync';
