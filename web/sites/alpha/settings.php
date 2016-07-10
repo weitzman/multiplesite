@@ -719,4 +719,4 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 # }
 
 require __DIR__ . '/../settings.allsites.php';
-$settings['install_profile'] = 'standard';
+

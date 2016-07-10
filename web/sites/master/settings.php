@@ -718,4 +718,4 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 #   include __DIR__ . '/settings.local.php';
 # }
 
-require __DIR__ . '/../settings.allsites.php';
+require __DIR__ . '/../settings.allsites.php';$settings['install_profile'] = 'minimal';

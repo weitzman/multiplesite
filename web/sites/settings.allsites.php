@@ -16,5 +16,5 @@ $databases['default']['default'] = array (
     'driver' => 'mysql',
 );
 
-$settings['install_profile'] = 'standard';
+$settings['install_profile'] = 'minimal';
 $config_directories['sync'] = '../config/'. $sites_subdir . '/sync';
