@@ -26,14 +26,15 @@ There are two git repos:
 
 We setup a Drupal multisite where the 'master' site carries the 'golden' config, and the client sites merge in golden config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
 
-Notes and Limitations
-=============
-1. A client could create a config entity whose machine name later conflicts with a name from master. That sort of conflict can happen with content as well.
-1. If a client deletes a config entity, it would come back with next import. We would need a "disable" instead. Not sure if this is supported by all config entity types.
 1. The 'minimal' profile must be used here as its a requirement of drush site-install --config-dir. One could likely do this with the config_installer profile but a custom profile is not likely to work. A custom distro should not be needed since client can just build upon minimal.
 1. The 'default' site is deliberately unused. One must specify a site alias for all commands. See /drush/aliases.drushrc.php.
 1. The `drush site-set` command is convenient when sending multiple Drush requests. `drush init` will customize your shell prompt so the current Drupal Site is shown.
 1. This experiment uses Drupal multisite is used for convenience only. This technique works with separate docroots as well.
+
+Findings
+=============
+1. A client could create a config entity whose machine name later conflicts with a name from master. That sort of conflict can happen with content as well. Maybe auto-prefix client-made config entities (e.g. bravo-image-style-hero).
+1. If a client deletes a config entity, it would come back with next import. Better to force clients to "disable" rather than delete. Status is a built-in feture of Config Entities: \Drupal\Core\Config\Entity\ConfigEntityBase::disable
 
 
 Credits
