@@ -10,7 +10,6 @@ Getting Started
 1. Run `drush msi -vy`. This creates a top level 'config' directory and one subdirectory for each site in the Drupal multisite (currently 3).
 1. view web/sites/settings.allsites.php. The DB is setup for Acquia Dev Desktop. If needed, override that by creating a settings.local.php in each settings subdir.
 1. Run `drush @master site-install -vy --config-dir=../config/master/sync`. Do same for alpha and bravo sites, replacing alias name and dir name.
-1. Run `drush @master en -y ms`. Do same for alpha and bravo sites. This module holds some helpers for this experiment.
 1. Verify that sites are working: `drush @master status`, `drush @alpha status`, `drush @bravo status`
 1. In 3 new terminal windows, run `drush @master runserver`, `drush @alpha runserver`, `drush @bravo runserver`. This will give you 3 web sites to play with. Drush reports back the URL of the site.
 
