@@ -20,6 +20,7 @@ You now have 3 working Drupal sites, mapped to the right databases and config di
 Implementation Discussion
 =============
 There are two git repos:
+
 1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites.
 1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a master branch, where the "golden" Drupal config is stored. Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
 
