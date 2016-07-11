@@ -28,13 +28,15 @@ We setup a Drupal multisite where the 'master' site carries the 'golden' config,
 
 1. The 'minimal' profile must be used here as its a requirement of drush site-install --config-dir. One could likely do this with the config_installer profile but a custom profile is not likely to work. A custom distro should not be needed since client can just build upon minimal.
 1. The 'default' site is deliberately unused. One must specify a site alias for all commands. See /drush/aliases.drushrc.php.
-1. The `drush site-set` command is convenient when sending multiple Drush requests. `drush init` will customize your shell prompt so the current Drupal Site is shown.
+1. The `drush use` command is convenient when sending multiple Drush requests. `drush init` will customize your shell prompt so the current Drupal Site is shown.
 1. This experiment uses Drupal multisite is used for convenience only. This technique works with separate docroots as well.
 
 Findings
 =============
-1. A client could create a config entity whose machine name later conflicts with a name from master. That sort of conflict can happen with content as well. Maybe auto-prefix client-made config entities (e.g. bravo-image-style-hero).
-1. If a client deletes a config entity, it would come back with next import. Better to force clients to "disable" rather than delete. Status is a built-in feture of Config Entities: \Drupal\Core\Config\Entity\ConfigEntityBase::disable
+1. A client can create a config entity whose machine name later conflicts with a name from master. Maybe auto-prefix client-made config entities (e.g. bravo-image-style-hero). @todo Investigate \Drupal\Core\Render\Element\MachineName.
+1. If a client deletes a config entity, it would come back with next import.
+    1. Disallow delete and have clients disable instead. Implement hook_entity_access() to deny delete operation.
+    1. @todo Most config entities don't declare status key so don't have Enable/Disable operations (e.g. Image styles). See https://www.drupal.org/node/1926376
 
 
 Credits
