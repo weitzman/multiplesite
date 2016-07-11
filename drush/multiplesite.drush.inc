@@ -6,6 +6,7 @@ function multiplesite_drush_command() {
     'arguments' => array(),
     'options' => array(),
     'aliases' => array('msi'),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_ROOT,
   );
   return $items;
 }
