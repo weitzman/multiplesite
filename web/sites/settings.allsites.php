@@ -18,3 +18,10 @@ $databases['default']['default'] = array (
 
 $settings['install_profile'] = 'minimal';
 $config_directories['sync'] = '../config/'. $sites_subdir . '/sync';
+
+/*
+ * Helper function to get list of sites.
+ */
+function multiplesites_get_sites() {
+  return array('master', 'alpha', 'bravo');
+}
