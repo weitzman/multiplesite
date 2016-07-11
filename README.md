@@ -1,6 +1,6 @@
 Overview
 ============
-An experiment in how to to handle the "multiplesite" pattern in Drupal 8. This is when you run dozens or hundreds of very similar sites. You want these sites to vary configuration in slight ways, but still easily push out config changes to all. Examples include [one site for each member of Congress](http://buytaert.net/us-house-of-representatives-using-drupal) or [one site for each musician in our portfolio](http://www.warnerbrosrecords.com/artists).
+An experiment in how to to handle the "multiplesite" pattern in Drupal 8. This is when you run dozens or hundreds of very similar sites. You want these sites to vary configuration in slight ways, but still easily push out config changes to all. Examples include [one site for each member of Congress](http://buytaert.net/us-house-of-representatives-using-drupal), or [one site for each musician in our portfolio](http://www.warnerbrosrecords.com/artists).
 
 Getting Started
 ==============

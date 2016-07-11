@@ -1,0 +1,20 @@
+<?php
+
+use Drupal\Core\Config\Entity\ConfigEntityType;
+
+/*
+ * Add the enable/disable operation for all config entities.
+ */
+function ms_entity_type_build(array &$entity_types) {
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  foreach ($entity_types as $name => $type) {
+    if ($type instanceof ConfigEntityType) {
+      $keys = $type->getKeys();
+      $keys['status'] = 'status';
+      $type->set('entity_keys', $keys);
+
+      // @todo We must also add routes+links to handle the enable/disable.
+      // @see annotation at \Drupal\search\Entity\SearchPage.
+    }
+  }
+}

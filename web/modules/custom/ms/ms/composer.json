@@ -1,0 +1,14 @@
+{
+  "name": "drupal/ms",
+  "type": "drupal-module",
+  "description": "Multiplesite Experiments",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/ms",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/ms",
+    "source": "http://cgit.drupalcode.org/ms"
+  },
+  "require": { }
+}
