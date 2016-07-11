@@ -53,3 +53,15 @@
  * @see \Drupal\Core\DrupalKernel::getSitePath()
  * @see https://www.drupal.org/documentation/install/multi-site
  */
+
+$sites = array(
+  '8080.localhost' => 'master',
+  '8081.localhost' => 'alpha',
+  '8082.localhost' => 'bravo',
+
+  // Should not be needed, but Drush appears to be broken (shame) https://github.com/drush-ops/drush/issues/339.
+  'localhost:8080' => 'master',
+  'localhost:8081' => 'alpha',
+  'localhost:8082' => 'bravo',
+    
+);

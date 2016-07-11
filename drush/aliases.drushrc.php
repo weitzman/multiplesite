@@ -345,12 +345,12 @@
 #  );
 
 $aliases['master'] = array(
-  'uri' => 'http://master:8080',
+  'uri' => 'http://localhost:8080',
 );
 $aliases['alpha'] = array(
-  'uri' => 'http://alpha:8081',
+  'uri' => 'http://localhost:8081',
 );
 
 $aliases['bravo'] = array(
-  'uri' => 'http://bravo:8082',
+  'uri' => 'http://localhost:8082',
 );

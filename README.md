@@ -12,9 +12,7 @@ Getting Started
 1. Run `drush @master site-install -vy --config-dir=../config/master/sync`. Do same for alpha and bravo sites, replacing alias name and dir name.
 1. Run `drush @master en -y ms`. Do same for alpha and bravo sites. This module holds some helpers for this experiment.
 1. Verify that sites are working: `drush @master status`, `drush @alpha status`
-1. In 3 new terminal windows, run `drush @master runserver`, `drush @alpha runserver`, `drush @bravo runserver`. This will give you a web site to play with. Drush reports back the URL of the site.
-1. Edit your /etc/hosts so that the 'master', 'alpha', 'bravo' domains all point to 127.0.0.1
-
+1. In 3 new terminal windows, run `drush @master runserver`, `drush @alpha runserver`, `drush @bravo runserver`. This will give you 3 web sites to play with. Drush reports back the URL of the site.
 
 You now have 3 working Drupal sites, mapped to the right databases and config dirs (see web/sites/settings.allsites.php).
 
