@@ -31,4 +31,11 @@ function drush_multiplesite_init() {
   }
 }
 
+/*
+ * Helper function to get list of sites.
+ */
+function multiplesite_get_sites() {
+  return array('master', 'alpha', 'bravo');
+}
+
 
