@@ -353,6 +353,6 @@ $aliases['alpha'] = $root + array(
   'uri' => 'http://localhost:8081',
 );
 
-$aliases['bra'] = $root + array(
+$aliases['bravo'] = $root + array(
   'uri' => 'http://localhost:8082',
 );
