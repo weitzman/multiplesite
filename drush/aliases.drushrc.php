@@ -344,13 +344,15 @@
 #     ),
 #  );
 
-$aliases['master'] = array(
+$root['root'] = dirname(__DIR__). '/web';
+
+$aliases['master'] = $root + array(
   'uri' => 'http://localhost:8080',
 );
-$aliases['alpha'] = array(
+$aliases['alpha'] = $root + array(
   'uri' => 'http://localhost:8081',
 );
 
-$aliases['bravo'] = array(
+$aliases['bra'] = $root + array(
   'uri' => 'http://localhost:8082',
 );

@@ -60,8 +60,8 @@ $sites = array(
   '8082.localhost' => 'bravo',
 
   // Should not be needed, but Drush appears to be broken (shame) https://github.com/drush-ops/drush/issues/339.
-  'localhost:8080' => 'master',
-  'localhost:8081' => 'alpha',
-  'localhost:8082' => 'bravo',
+//  'localhost:8080' => 'master',
+//  'localhost:8081' => 'alpha',
+//  'localhost:8082' => 'bravo',
     
 );
