@@ -10,6 +10,7 @@ Getting Started
 1. Run `drush msi -vy`. This creates a top level 'config' directory and one subdirectory for each site in the Drupal multisite (currently 3).
 1. view web/sites/settings.allsites.php. The DB is setup for Acquia Dev Desktop. If needed, override that by creating a settings.local.php in each settings subdir.
 1. Run `drush @master site-install -vy --config-dir=../config/master/sync`. Do same for alpha and bravo sites, replacing alias name and dir name.
+1. Run `drush @master en -y ms`. Do same for alpha and bravo sites. This module holds some helpers for this experiment.
 1. Verify that sites are working: `drush @master status`, `drush @alpha status`
 1. In 3 new terminal windows, run `drush @master runserver`, `drush @alpha runserver`, `drush @bravo runserver`. This will give you a web site to play with. Drush reports back the URL of the site.
 1. Edit your /etc/hosts so that the 'master', 'alpha', 'bravo' domains all point to 127.0.0.1
@@ -36,7 +37,7 @@ Findings
 1. A client can create a config entity whose machine name later conflicts with a name from master. Maybe auto-prefix client-made config entities (e.g. bravo-image-style-hero). @todo Investigate \Drupal\Core\Render\Element\MachineName.
 1. If a client deletes a config entity, it would come back with next import.
     1. Disallow delete and have clients disable instead. Implement hook_entity_access() to deny delete operation.
-    1. @todo Most config entities don't declare status key so don't have Enable/Disable operations (e.g. Image styles). See https://www.drupal.org/node/1926376
+    1. @todo Most config entities don't declare status key so don't have Enable/Disable operations (e.g. Image styles). See https://www.drupal.org/node/1926376. A start at addressing this is in the [ms module](https://github.com/weitzman/multiplesite/tree/master/web/modules/custom/ms/ms).
 
 
 Credits
