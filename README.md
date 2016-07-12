@@ -35,6 +35,7 @@ Findings
 1. If a client deletes a config entity, it would come back with next import.
     1. Disallow delete and have clients disable instead. Implement hook_entity_access() to deny delete operation.
     1. @todo Most config entities don't declare status key so don't have Enable/Disable operations (e.g. Image styles). If we add those, we could simply hide disabled entities like Formats does, or provide a segregated UI like Views does (more work). See https://www.drupal.org/node/1926376. A start at addressing this is in the [ms module](https://github.com/weitzman/multiplesite/tree/master/web/modules/custom/ms/ms).
+1. It is possible to have git conflicts when merging from master to client repo. There may be a way with [rerere](https://medium.com/@porteneuve/fix-conflicts-only-once-with-git-rerere-7d116b2cec67#.cofpprewi) to save the conflict resolution for use on other client branches.
 
 
 Credits
