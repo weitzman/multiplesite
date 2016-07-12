@@ -38,6 +38,7 @@ Findings
 1. It is possible to have git conflicts when merging from master to client repo. There may be a way with [rerere](https://medium.com/@porteneuve/fix-conflicts-only-once-with-git-rerere-7d116b2cec67#.cofpprewi) to save the conflict resolution for use on other client branches.
 1. Features module appears to be a poor fit here. We want to allow clients to _partially_ vary their config entities indefinitely. Features allows you to revert config but no other way to benefit from future changes.
 1. Admin pages list and load config entities without overrides so the override system is a poor place for storing client variations.
+1. Pull requests for features involve two repos.
 
 
 Credits
