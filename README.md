@@ -38,7 +38,7 @@ Findings
 1. It is possible to have git conflicts when merging from master to client repo. There may be a way with [rerere](https://medium.com/@porteneuve/fix-conflicts-only-once-with-git-rerere-7d116b2cec67#.cofpprewi) to save the conflict resolution for use on other client branches.
 1. Features module appears to be a poor fit here. We want to allow clients to _partially_ vary their config entities indefinitely. Features allows you to revert config but no other way to benefit from future changes.
 1. Admin pages list and load config entities without overrides so the override system is a poor place for storing client variations.
-1. Pull requests for features involve two repos.
+1. Pull requests involve two repos (ugh). [GitColony](https://www.gitcolony.com/) (an add-on to VCS systems) allegedly handles this. [Gitlab issue](https://gitlab.com/gitlab-org/gitlab-ce/issues/18345). [BitBucket issue](https://jira.atlassian.com/browse/BSERV-4577). I am following these issues.
 1. For our custom modules, we want to checkin config entities with UUIDs in the file (unlike core). That way client sites have predicatable UUIDs. For core and contrib modules, its better if those get enabled via config-import than via UI since clients's config entities will get standard UUIDs. This approach works as long as we core doesn't implement https://www.drupal.org/node/2161149.
 
 
