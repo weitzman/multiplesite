@@ -1,0 +1,14 @@
+uuid: 52582285-e6c5-4ee0-abde-deb398e0b1b3
+name: Site-Install
+mail: foo3@example.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /user/login
+admin_compact_mode: true
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

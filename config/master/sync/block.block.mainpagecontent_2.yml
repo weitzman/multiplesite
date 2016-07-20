@@ -1,0 +1,20 @@
+uuid: 78f74c90-d6a5-4de5-8dd4-d13c57c5b71e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bartik
+id: mainpagecontent_2
+theme: bartik
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }
