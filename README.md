@@ -42,6 +42,6 @@ Findings
 
 SubSplit
 ================
-The key command to update the subtree split is: `git subsplit publish config:git@github.com:weitzman/multisite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool.
+The key command to update the subtree split is: `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool.
 
 In order to keep most pull requests within a single repo, 'master' config lives in the code repo. That's where almost all development happens. We subtree split the /config directory to a new repo so we have place to store all the client configuration files.
