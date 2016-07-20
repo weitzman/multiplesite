@@ -32,12 +32,12 @@ function drush_multiplesite_init() {
     drush_shell_cd_and_exec($config, $exec, $site, $site);
 
     // Add a remote to multiplesite for cherry-picking commits to there from client site.
-    $exec = "git remote add git multiplesite https://github.com/weitzman/multiplesite.git";
-    drush_shell_cd_and_exec($config, $exec);
+    $exec = "git remote add multiplesite https://github.com/weitzman/multiplesite.git";
+    drush_shell_cd_and_exec("$config/$site", $exec);
 
     // Fetch files/branches from remote so that user is not confused when they don't exist.
     $exec = "git fetch --all";
-    drush_shell_cd_and_exec($config, $exec);
+    drush_shell_cd_and_exec("$config/$site", $exec);
   }
 }
 
