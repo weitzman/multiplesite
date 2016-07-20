@@ -40,6 +40,11 @@ Findings
 1. Admin pages list and load config entities without overrides so the override system is a poor place for storing client variations.
 1. For our custom modules, we want to checkin config entities with UUIDs in the file (unlike core). That way client sites have predicatable UUIDs. For core and contrib modules, its better if those get enabled via config-import than via UI since clients's config entities will get standard UUIDs. This approach works as long as we core doesn't implement https://www.drupal.org/node/2161149.
 
-SubSplit
+Minutia
 ================
-The master config is copied to thd multisite-config repo via `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool. This can be automated for every push via a web hook. [Webtask.io](https://webtask.io/) looks great for hosting web hook code.
+1. The master config is force pushed to the multisite-config repo via `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool. This can be automated for every push via a web hook. [Webtask.io](https://webtask.io/) looks great for hosting web hook code.
+1. When fixing bugs while using a client site, a developer can choose to push commits to master config or to client config as needed. Pushing to client config happens automatically since thats 'origin'. If dev wants to integrate changes into multiplesite, a remote pointng to multiplesite/master is automatically created by `drush msi` in each client config directory. To use it:
+
+    git checkout -b multiplesite-master multiplesite/master
+    git cherry-pick <COMMITS>
+    git push
