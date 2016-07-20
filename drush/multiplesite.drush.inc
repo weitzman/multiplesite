@@ -2,7 +2,7 @@
 
 function multiplesite_drush_command() {
   $items['multiplesite-init'] = array(
-    'description' => 'Create the config directories via git clones.',
+    'description' => 'Create the client config directories via git clones.',
     'arguments' => array(),
     'options' => array(),
     'aliases' => array('msi'),
@@ -16,16 +16,18 @@ function multiplesite_drush_command() {
  */
 function drush_multiplesite_init() {
   $config = dirname(drush_get_context('DRUSH_DRUPAL_ROOT')) . '/config';
-  if (file_exists($config)) {
-    if (!drush_confirm('Are you sure you want to delete and re-install the config directories?')) {
-      return drush_user_abort();
+
+  // Wipe all but 'master' subdir.
+  $scandir = @scandir($config);
+  foreach ($scandir as $item) {
+    if ($item == '.' || $item == '..' || $item == 'master') {
+      continue;
     }
-    else {
-      drush_delete_dir($config, TRUE);
-    }
+    drush_delete_dir($config. '/'. $item);
   }
-  drush_mkdir($config);
-  foreach (multiplesites_get_sites() as $site) {
+
+  // Place all client subdirs into /config.
+  foreach (multiplesite_get_sites() as $site) {
     $exec = "git clone --branch %s https://github.com/weitzman/multiplesite-config.git %s";
     drush_shell_cd_and_exec($config, $exec, $site, $site);
   }
@@ -35,7 +37,7 @@ function drush_multiplesite_init() {
  * Helper function to get list of sites.
  */
 function multiplesite_get_sites() {
-  return array('master', 'alpha', 'bravo');
+  return array('alpha', 'bravo');
 }
 
 
