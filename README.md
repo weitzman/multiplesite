@@ -19,7 +19,7 @@ Implementation Discussion
 =============
 There are two git repos:
 
-1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config.
+1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that involve client-specific configuration changes.
 1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in the master branch (see below). Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
 
 We setup a Drupal multisite where the 'master' site carries the 'master' config, and the client sites merge in master config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
@@ -42,6 +42,4 @@ Findings
 
 SubSplit
 ================
-The key command to update the subtree split is: `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool.
-
-In order to keep most pull requests within a single repo, 'master' config lives in the code repo. That's where almost all development happens. We subtree split the /config/master directory to a the config repo so we have coherent place to store all the client configuration files.
+The master config is copied to thd multisite-config repo via `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool. This can be automated for every push via a web hook. [Webtask.io](https://webtask.io/) looks great for hosting web hook code.
