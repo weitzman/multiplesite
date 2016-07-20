@@ -19,8 +19,8 @@ Implementation Discussion
 =============
 There are two git repos:
 
-1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites.
-1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a master branch, where the "golden" Drupal config is stored. Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
+1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "golden" config.
+1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the golden config in the master branch (see below). Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
 
 We setup a Drupal multisite where the 'master' site carries the 'golden' config, and the client sites merge in golden config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
 
@@ -38,10 +38,10 @@ Findings
 1. It is possible to have git conflicts when merging from master to client repo. There may be a way with [rerere](https://medium.com/@porteneuve/fix-conflicts-only-once-with-git-rerere-7d116b2cec67#.cofpprewi) to save the conflict resolution for use on other client branches.
 1. Features module appears to be a poor fit here. We want to allow clients to _partially_ vary their config entities indefinitely. Features allows you to revert config but no other way to benefit from future changes.
 1. Admin pages list and load config entities without overrides so the override system is a poor place for storing client variations.
-1. Pull requests involve two repos (ugh). [GitColony](https://www.gitcolony.com/) (an add-on to VCS systems) allegedly handles this. [Gitlab issue](https://gitlab.com/gitlab-org/gitlab-ce/issues/18345). [BitBucket issue](https://jira.atlassian.com/browse/BSERV-4577). I am following these issues.
 1. For our custom modules, we want to checkin config entities with UUIDs in the file (unlike core). That way client sites have predicatable UUIDs. For core and contrib modules, its better if those get enabled via config-import than via UI since clients's config entities will get standard UUIDs. This approach works as long as we core doesn't implement https://www.drupal.org/node/2161149.
 
-
-Credits
+SubSplit
 ================
-- This repo is based on https://github.com/drupal-composer/drupal-project.
+The key command to update the subtree split is: `git subsplit publish config:git@github.com:weitzman/multisite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool.
+
+In order to keep most pull requests within a single repo, 'master' config lives in the code repo. That's where almost all development happens. We subtree split the /config directory to a new repo so we have place to store all the client configuration files.
