@@ -16,3 +16,6 @@ web/sites/*/files
 # @todo improve via https://gist.github.com/hieblmedia/9318457
 /config/alpha
 /config/bravo
+
+#https://github.com/dflydev/git-subsplit/
+/.subsplit
