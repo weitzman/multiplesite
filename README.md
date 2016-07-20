@@ -19,10 +19,10 @@ Implementation Discussion
 =============
 There are two git repos:
 
-1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "golden" config.
-1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the golden config in the master branch (see below). Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
+1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config.
+1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in the master branch (see below). Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
 
-We setup a Drupal multisite where the 'master' site carries the 'golden' config, and the client sites merge in golden config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
+We setup a Drupal multisite where the 'master' site carries the 'master' config, and the client sites merge in master config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
 
 1. The 'minimal' profile must be used here as its a requirement of drush site-install --config-dir. One could likely do this with the config_installer profile but a custom profile is not likely to work. A custom distro should not be needed since client can just build upon minimal.
 1. The 'default' site is deliberately unused. One must specify a site alias for all commands. See /drush/aliases.drushrc.php.
