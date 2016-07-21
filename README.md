@@ -19,7 +19,7 @@ Implementation Discussion
 There are two git repos:
 
 1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that require client-specific configuration changes.
-1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in its master branch (see its README.md). Then we create branches off of master - one for each client site. These branches are pulled into a subdirectory of /config during `composer install`.
+1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in its master branch (see its README.md). Then we create branches off of master - one for each client site. [These branches are pulled into a subdirectory of /config during `composer install`](https://github.com/weitzman/multiplesite/blob/master/composer.json#L29).
 
 We setup a Drupal multisite where the 'master' site carries the 'master' config, and the client sites merge in master config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
 
