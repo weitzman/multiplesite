@@ -19,7 +19,7 @@ Implementation Discussion
 There are two git repos:
 
 1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that require client-specific configuration changes.
-1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in its master branch (see below). Then we create branches off of master - one for each client site. These branches are pulled into a subdirectory of /config during `composer install`.
+1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in its master branch (see its README.md). Then we create branches off of master - one for each client site. These branches are pulled into a subdirectory of /config during `composer install`.
 
 We setup a Drupal multisite where the 'master' site carries the 'master' config, and the client sites merge in master config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
 
@@ -41,8 +41,6 @@ Findings
 
 Minutia
 ================
-1. The master config is force pushed to the multisite-config repo via `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool. This can be automated for every push via a web hook. [Webtask.io](https://webtask.io/) looks great for hosting web hook code.
-1. The [composer.json](https://github.com/weitzman/multiplesite-config/blob/alpha/composer.json) files in each branch of multisite-config specify a package type of 'bonefish-package.' We need to specify a type in order for composer-installers to work, and bonefish is the silliest option.
 1. When fixing bugs while using a client site, a developer can choose to push commits to master config or to client config as needed. Pushing to client config happens automatically since thats 'origin'. If dev wants to integrate changes into multiplesite, add a remote pointing to multiplesite and then push commits there.
 
 ```
