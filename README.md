@@ -7,7 +7,7 @@ Getting Started
 1. Clone this repo
 1. Run `composer install`
 1. Run `cd web`
-1. view web/sites/settings.allsites.php. The DB is setup for Acquia Dev Desktop. If needed, override that by creating a settings.local.php in each settings subdir.
+1. See [web/sites/settings.allsites.php](https://github.com/weitzman/multiplesite/blob/master/web/sites/settings.allsites.php). The DB port is configured for Acquia Dev Desktop. If needed, override that by editing this file or change settings.local.php in each settings subdir.
 1. Run `drush @master site-install -vy --config-dir=../config/master/sync`. Do same for alpha and bravo sites, replacing alias name and dir name.
 1. Verify that sites are working: `drush @master status`, `drush @alpha status`, `drush @bravo status`
 1. In 3 new terminal windows, run `drush @master runserver`, `drush @alpha runserver`, `drush @bravo runserver`. This will give you 3 web sites to play with. Drush reports back the URL of the site.
@@ -34,10 +34,9 @@ Findings
 1. Some config entities have broad permissions (e.g. 'Administer image styles'). We might prevent deletion but add/edit is OK.
     1. Disallow delete and have clients disable instead. Implement hook_entity_access() to deny delete operation.
     1. @todo Most config entities don't declare status key so don't have Enable/Disable operations (e.g. Image styles). If we add those, we could simply hide disabled entities like Formats does, or provide a grouped UI like Views does (more work). See https://www.drupal.org/node/1926376. A start at addressing this is in the [ms module](https://github.com/weitzman/multiplesite/tree/master/web/modules/custom/ms/ms).
-1. It is possible to have git conflicts when merging from master to client repo. There may be a way with [rerere](https://medium.com/@porteneuve/fix-conflicts-only-once-with-git-rerere-7d116b2cec67#.cofpprewi) to save the conflict resolution for use on other client branches.
 1. Features module appears to be a poor fit here. We want to allow clients to _partially_ vary their config entities indefinitely. Features allows you to revert config but no other way to benefit from future changes.
 1. Admin pages list and load config entities without overrides so the override system is a poor place for storing client variations.
-1. For our custom modules, we want to checkin config entities with UUIDs in the file (unlike core). That way client sites have predicatable UUIDs. For core and contrib modules, its better if those get enabled via config-import than via UI since clients's config entities will get standard UUIDs. This approach works as long as we core doesn't implement https://www.drupal.org/node/2161149.
+1. For our custom modules, we want to check-in config entities with UUIDs in the file (unlike core). That way client sites have predictable UUIDs. For core and contrib modules, its better if those get enabled via config-import than via UI since clients's config entities will get standard UUIDs. This approach works as long as we core doesn't implement https://www.drupal.org/node/2161149.
 
 Minutia
 ================
