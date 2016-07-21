@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a725933cca05ade8de5b55276742b011",
-    "content-hash": "30cf4762117798fa59fba1cedf18ef9e",
+    "hash": "e4a39faf8db6e9c22317fc825601a5c6",
+    "content-hash": "bb097551464468edea624dc1aa8a82a7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1781,32 +1781,29 @@
         },
         {
             "name": "multiplesite-config/alpha",
-            "version": "1.12.0",
+            "version": "dev-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/weitzman/multiplesite-config.git",
-                "reference": "5563a8949b8be1c0b6035cf1d436eef6ec2227e1"
+                "reference": "6efeb288060ecfa7fe09fc23c08548fa4dadf1d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weitzman/multiplesite-config/zipball/5563a8949b8be1c0b6035cf1d436eef6ec2227e1",
-                "reference": "5563a8949b8be1c0b6035cf1d436eef6ec2227e1",
+                "url": "https://api.github.com/repos/weitzman/multiplesite-config/zipball/6efeb288060ecfa7fe09fc23c08548fa4dadf1d0",
+                "reference": "6efeb288060ecfa7fe09fc23c08548fa4dadf1d0",
                 "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0"
             },
             "type": "bonefish-package",
             "description": "alpha",
             "support": {
-                "source": "https://github.com/weitzman/multiplesite-config/tree/1.12.0",
+                "source": "https://github.com/weitzman/multiplesite-config/tree/alpha",
                 "issues": "https://github.com/weitzman/multiplesite-config/issues"
             },
-            "time": "2016-07-20 20:57:50"
+            "time": "2016-07-21 12:19:04"
         },
         {
             "name": "multiplesite-config/bravo",
-            "version": "2.12.1",
+            "version": "dev-bravo",
             "source": {
                 "type": "git",
                 "url": "https://github.com/weitzman/multiplesite-config.git",
@@ -5571,7 +5568,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drush/drush": 20
+        "drush/drush": 20,
+        "multiplesite-config/alpha": 20,
+        "multiplesite-config/bravo": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

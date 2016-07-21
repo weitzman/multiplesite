@@ -26,8 +26,8 @@
         "drupal/core": "~8.0",
         "drush/drush": "8.x-dev",
         "drupal/console": "~1.0",
-        "multiplesite-config/alpha": "1.x",
-        "multiplesite-config/bravo": "2.x"
+        "multiplesite-config/alpha": "dev-alpha",
+        "multiplesite-config/bravo": "dev-bravo"
     },
     "require-dev": {
         "behat/mink": "~1.7",
