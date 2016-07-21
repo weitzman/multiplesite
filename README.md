@@ -18,7 +18,7 @@ Implementation Discussion
 =============
 There are two git repos:
 
-1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that require client-specific configuration changes.
+1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that require site-specific configuration changes.
 1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in its master branch (see its README.md). Then we create branches off of master - one for each client site. [These branches are pulled into a subdirectory of /config during `composer install`](https://github.com/weitzman/multiplesite/blob/master/composer.json#L29).
 
 We setup a Drupal multisite where the 'master' site carries the 'master' config, and the client sites merge in master config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
@@ -27,6 +27,14 @@ We setup a Drupal multisite where the 'master' site carries the 'master' config,
 1. The 'default' site is deliberately unused. One must specify a site alias for all commands. See /drush/aliases.drushrc.php.
 1. The `drush use` command is convenient when sending multiple Drush requests. `drush init` will customize your shell prompt so the current Drupal Site is shown.
 1. This experiment uses Drupal multisite is used for convenience only. This technique works with separate docroots as well.
+
+Adding a new Site (e.g. foo)
+===================
+1. Create settings subdir: `cp -r sites/alpha sites/foo`. No customization is needed in settings.php.
+1. Add line in composer.json: `composer require multiplesite-config/foo dev-foo`
+1. Create branch in multisite-config repo: `git checkout -b foo master && git push`
+1. `composer update`
+1. drush @foo site-install -vy --config-dir=../config/foo/sync
 
 Findings
 =============
