@@ -13,6 +13,10 @@
         {
             "type": "composer",
             "url": "https://packagist.drupal-composer.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/weitzman/multiplesite-config.git"
         }
     ],
     "require": {
@@ -21,10 +25,12 @@
         "cweagans/composer-patches": "~1.0",
         "drupal/core": "~8.0",
         "drush/drush": "8.x-dev",
-        "drupal/console": "~1.0"
+        "drupal/console": "~1.0",
+        "multiplesite-config/alpha": "1.x",
+        "multiplesite-config/bravo": "2.x"
     },
     "require-dev": {
-       "behat/mink": "~1.7",
+        "behat/mink": "~1.7",
         "behat/mink-goutte-driver": "~1.2",
         "jcalderonzumba/gastonjs": "~1.0.2",
         "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
@@ -59,11 +65,17 @@
     },
     "extra": {
         "installer-paths": {
+            "config/{$name}": ["type:bonefish-package"],
             "web/core": ["type:drupal-core"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
+        }
+    },
+    "config": {
+        "preferred-install": {
+            "multiplesite-config/*": "source"
         }
     }
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "696e847a60143a9d97f7c9654bf89905",
-    "content-hash": "69e5e728eb67c93a7c97a1536294fcc7",
+    "hash": "a725933cca05ade8de5b55276742b011",
+    "content-hash": "30cf4762117798fa59fba1cedf18ef9e",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1780,6 +1780,53 @@
             "time": "2016-05-10 14:11:45"
         },
         {
+            "name": "multiplesite-config/alpha",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weitzman/multiplesite-config.git",
+                "reference": "5563a8949b8be1c0b6035cf1d436eef6ec2227e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weitzman/multiplesite-config/zipball/5563a8949b8be1c0b6035cf1d436eef6ec2227e1",
+                "reference": "5563a8949b8be1c0b6035cf1d436eef6ec2227e1",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "bonefish-package",
+            "description": "alpha",
+            "support": {
+                "source": "https://github.com/weitzman/multiplesite-config/tree/1.12.0",
+                "issues": "https://github.com/weitzman/multiplesite-config/issues"
+            },
+            "time": "2016-07-20 20:57:50"
+        },
+        {
+            "name": "multiplesite-config/bravo",
+            "version": "2.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weitzman/multiplesite-config.git",
+                "reference": "1b495b11ce72c29f1f0fa4428d6f2b0cbf6291a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weitzman/multiplesite-config/zipball/1b495b11ce72c29f1f0fa4428d6f2b0cbf6291a8",
+                "reference": "1b495b11ce72c29f1f0fa4428d6f2b0cbf6291a8",
+                "shasum": ""
+            },
+            "type": "bonefish-package",
+            "description": "bravo",
+            "support": {
+                "source": "https://github.com/weitzman/multiplesite-config/tree/2.12.1",
+                "issues": "https://github.com/weitzman/multiplesite-config/issues"
+            },
+            "time": "2016-07-21 12:24:04"
+        },
+        {
             "name": "nikic/php-parser",
             "version": "v2.1.0",
             "source": {
@@ -2481,7 +2528,7 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony CMF community",
+                    "name": "Symfony CMF Community",
                     "homepage": "https://github.com/symfony-cmf/Routing/contributors"
                 }
             ],
@@ -4965,16 +5012,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.26",
+            "version": "4.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fc1d8cd5b5de11625979125c5639347896ac2c74"
+                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fc1d8cd5b5de11625979125c5639347896ac2c74",
-                "reference": "fc1d8cd5b5de11625979125c5639347896ac2c74",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c062dddcb68e44b563f66ee319ddae2b5a322a90",
+                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90",
                 "shasum": ""
             },
             "require": {
@@ -5033,7 +5080,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-05-17 03:09:28"
+            "time": "2016-07-21 06:48:14"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

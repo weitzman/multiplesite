@@ -7,7 +7,6 @@ Getting Started
 1. Clone this repo
 1. Run `composer install`
 1. Run `cd web`
-1. Run `drush msi -vy`. This creates a top level 'config' directory and one subdirectory for each site in the Drupal multisite (currently 3).
 1. view web/sites/settings.allsites.php. The DB is setup for Acquia Dev Desktop. If needed, override that by creating a settings.local.php in each settings subdir.
 1. Run `drush @master site-install -vy --config-dir=../config/master/sync`. Do same for alpha and bravo sites, replacing alias name and dir name.
 1. Verify that sites are working: `drush @master status`, `drush @alpha status`, `drush @bravo status`
@@ -19,8 +18,8 @@ Implementation Discussion
 =============
 There are two git repos:
 
-1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that involve client-specific configuration changes.
-1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in the master branch (see below). Then we create branches off of master - one for each client site. These branches are cloned into place under a /config directory by the `drush msi` command. This build step seems cleaner than a submodule approach which would embed config repos into the code repo.
+1. [multiplesite](https://github.com/weitzman/multiplesite). This repo carries the shared for code for all the sites, and the "master" config. This where pull requests happen for new features and 99% of bug fixes. The only exception would be bug fixes that require client-specific configuration changes.
+1. [multiplesite-config](https://github.com/weitzman/multiplesite-config). This repo has a subtree split of the master config in its master branch (see below). Then we create branches off of master - one for each client site. These branches are pulled into a subdirectory of /config during `composer install`.
 
 We setup a Drupal multisite where the 'master' site carries the 'master' config, and the client sites merge in master config periodically. So the workflow is that client sites occasionally change config on their own sites and that config gets exported and committed to their own branch frequently. When the master wants to push out new config, we merge from multisite-config/master (or a tag there) into each client branch.
 
@@ -43,9 +42,11 @@ Findings
 Minutia
 ================
 1. The master config is force pushed to the multisite-config repo via `git-subsplit.sh publish config/master:git@github.com:weitzman/multiplesite-config.git --heads=master`. This depends on the [git-subsplit](https://github.com/dflydev/git-subsplit/) helper tool. This can be automated for every push via a web hook. [Webtask.io](https://webtask.io/) looks great for hosting web hook code.
-1. When fixing bugs while using a client site, a developer can choose to push commits to master config or to client config as needed. Pushing to client config happens automatically since thats 'origin'. If dev wants to integrate changes into multiplesite, a remote pointng to multiplesite/master is automatically created by `drush msi` in each client config directory. To use it:
+1. The [composer.json](https://github.com/weitzman/multiplesite-config/blob/alpha/composer.json) files in each branch of multisite-config specify a package type of 'bonefish-package.' We need to specify a type in order for composer-installers to work, and bonefish is the silliest option.
+1. When fixing bugs while using a client site, a developer can choose to push commits to master config or to client config as needed. Pushing to client config happens automatically since thats 'origin'. If dev wants to integrate changes into multiplesite, add a remote pointing to multiplesite and then push commits there.
 
 ```
+    git remote add multiplesite https://github.com/weitzman/multiplesite.git
     git checkout -b multiplesite-master multiplesite/master
     git cherry-pick <COMMITS>
     git push
