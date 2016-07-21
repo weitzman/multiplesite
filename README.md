@@ -34,6 +34,7 @@ Adding a new Site (e.g. foo)
 1. Add line in composer.json: `composer require multiplesite-config/foo dev-foo`
 1. Create branch in multisite-config repo: `git checkout -b foo master && git push`
 1. `composer update`
+1. Add @foo entry to [aliases.drushrc.php](https://github.com/weitzman/multiplesite/blob/master/drush/aliases.drushrc.php)
 1. drush @foo site-install -vy --config-dir=../config/foo/sync
 
 Findings
